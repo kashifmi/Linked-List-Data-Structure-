@@ -16,8 +16,8 @@ class linkedList{
         linkedList();
         bool isEmpty(); 
         void insertNode(const T &item); 
-        void displayList() const; 
         void deleteNode(const T &item);
+        void displayList() const; 
         // ~linkedList(); *feature to add later  
         // copy constructor 
 };
@@ -59,6 +59,12 @@ void linkedList<T>::insertNode(const T &item){
 template <class T> 
 void linkedList<T>::deleteNode(const T &item){
     nodeType<T> *finder = first; 
+
+    if (first->info == item){
+        first = first->link; 
+        delete finder;
+        return;  
+    }
     
     while(finder->link->info != item || finder == nullptr){
         finder = finder->link; 
@@ -69,7 +75,7 @@ void linkedList<T>::deleteNode(const T &item){
     }
     nodeType<T> *deleter = finder->link; 
     finder->link = deleter->link; 
-    delete deleter; 
+    delete deleter;
 };
 
 template <class T>
@@ -92,7 +98,7 @@ int main(){
 
     list1.displayList(); 
 
-    list1.deleteNode(5); 
+    list1.deleteNode(7); 
 
     list1.displayList(); 
 
