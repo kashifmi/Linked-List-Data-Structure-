@@ -17,6 +17,7 @@ class linkedList{
         bool isEmpty(); 
         void insertNode(const T &item); 
         void deleteNode(const T &item);
+        bool searchItem(const T &item); 
         void displayList() const; 
         // ~linkedList(); *feature to add later  
         // copy constructor 
@@ -78,6 +79,23 @@ void linkedList<T>::deleteNode(const T &item){
     delete deleter;
 };
 
+template <class T> 
+bool linkedList<T>::searchItem(const T &item){
+    nodeType<T> *finder = first; 
+    bool found = false; 
+
+    while (finder){
+        if (finder->info == item){
+            found = true; 
+            return found; 
+        }
+        else{
+            finder = finder->link; 
+        }
+        return found; 
+    }
+};
+
 template <class T>
 void linkedList<T>::displayList() const{
     nodeType<T> *displayer; 
@@ -88,7 +106,7 @@ void linkedList<T>::displayList() const{
         displayer = displayer->link; 
     }
     std::cout << std::endl;
-}
+};
 
 int main(){
     linkedList<int> list1; 
@@ -102,5 +120,7 @@ int main(){
 
     list1.displayList(); 
 
+    std::cout << "Found in the list " << list1.searchItem(6) << std::endl; 
+
     return 0; 
-}
+};
