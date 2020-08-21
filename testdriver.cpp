@@ -92,8 +92,8 @@ bool linkedList<T>::searchItem(const T &item){
         else{
             finder = finder->link; 
         }
-        return found; 
     }
+    return found;
 };
 
 template <class T>
