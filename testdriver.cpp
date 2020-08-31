@@ -7,6 +7,19 @@ struct nodeType{
 };
 
 template <class T> 
+class linkedListIterator{
+    private: 
+        nodeType<T> *current; 
+    public: 
+        linkedListIterator(); 
+        linkedListIterator(nodeType<T> *ptr); 
+        T oparator*(); 
+        linkedListIterator<T> oparator++();
+        bool oparator==(linkedListIterator<T> &right); 
+        bool oparator!=(linkedListIterator<T> &right); 
+};
+
+template <class T> 
 class linkedList{
     private: 
         nodeType<T> *first; 
