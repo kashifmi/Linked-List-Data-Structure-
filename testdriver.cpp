@@ -13,11 +13,36 @@ class linkedListIterator{
     public: 
         linkedListIterator(); 
         linkedListIterator(nodeType<T> *ptr); 
-        T oparator*(); 
-        linkedListIterator<T> oparator++();
-        bool oparator==(linkedListIterator<T> &right); 
-        bool oparator!=(linkedListIterator<T> &right); 
+        T operator*(); 
+        linkedListIterator<T> operator++();
+        bool operator==(linkedListIterator<T> &right); 
+        bool operator!=(linkedListIterator<T> &right); 
 };
+
+template <class T> 
+linkedListIterator<T>::linkedListIterator(){
+    current = nullptr; 
+};
+
+template <class T> 
+linkedListIterator<T>::linkedListIterator(nodeType<T> *ptr){
+    current = ptr; 
+};
+
+template <class T> 
+linkedListIterator<T> linkedListIterator<T>::operator++(){
+    current = current->link; 
+};
+
+template <class T> 
+bool linkedListIterator<T>::operator==(linkedListIterator<T> &right){
+    return (current == right.current); 
+}; 
+
+template <class T> 
+bool linkedListIterator<T>::operator!=(linkedListIterator<T> &right){
+    return (current != right.current); 
+}; 
 
 template <class T> 
 class linkedList{
