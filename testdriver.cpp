@@ -46,19 +46,39 @@ bool linkedListIterator<T>::operator!=(linkedListIterator<T> &right){
 
 template <class T> 
 class linkedList{
-    private: 
+    protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
         int count;
+    private: 
+        void copyList(const linkedList<T> &otherList);
     public: 
         linkedList();
+        void initializeList(); 
+        const linkedList<T> operator=(const linkedList<T> &); 
         bool isEmpty(); 
+        void listLength(); 
         void insertNode(const T &item); 
         void deleteNode(const T &item);
         bool searchItem(const T &item); 
-        void displayList() const; 
-        // ~linkedList(); *feature to add later  
+        void displayList() const;
+        void destroyList();  
+        ~linkedList();  
         // copy constructor 
+};
+
+template <class T> 
+void linkedList<T>::copyList(const linkedList<T> &otherList){
+    if (!first){
+        std::cout << "List is empty, nothing to copy \n";
+        return; 
+    }
+    linkedList<T> newList; 
+    nodeType<T> *nodeCopier = first; 
+    
+    while (nodeCopier){
+        nodeCopier->info = newList
+    }
 };
 
 template <class T> 
