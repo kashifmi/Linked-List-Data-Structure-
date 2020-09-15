@@ -8,6 +8,8 @@ struct nodeType{
 
 template <class T> 
 class linkedList{
+    private: 
+        void copyList(const linkedList<T> &otherList);
     protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
