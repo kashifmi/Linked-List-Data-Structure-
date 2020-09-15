@@ -10,6 +10,7 @@ template <class T>
 class linkedList{
     private: 
         void copyList(const linkedList<T> &otherList);
+        void deleteList();
     protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
@@ -17,24 +18,79 @@ class linkedList{
     public: 
         linkedList();
         bool isEmpty(); 
+        void initList();  
         void insertNode(const T &item); 
         void deleteNode(const T &item);
         bool searchItem(const T &item); 
         void displayList() const; 
-        // ~linkedList(); *feature to add later  
+        ~linkedList(); 
         // copy constructor 
 };
 
 template <class T> 
-linkedList<T>::linkedList(){
+void linkedList<T>::copyList(const linkedList<T> &otherList){
+    if (!this->isEmpty()){
+        deleteList(); 
+    }
+
+    if (otherList.isEmpty()){
+        std::cout << "List to copy is empty. Both lists are now empty. \n"; 
+        return; 
+    }
+
+    nodeType<T> *lista_iterator, *listb_iterator, node_creator; 
+
+    lista_iterator = otherList.first; 
+    listb_iterator = new nodeType<T>; 
+    listb_iterator->info = listb_iterator->info; 
+    listb_iterator->link = nullptr; 
+    first = listb_iterator; 
+    lista_iterator = lista_iterator->link;
+
+    while (lista_iterator){
+        node_creator = new nodeType<T>; 
+        node_creator->info = lista_iterator->info;
+        node_creator->link = nullptr; 
+        listb_iterator->link = node_creator; 
+        listb_iterator = node_creator; 
+        lista_iterator = lista_iterator->link; 
+    }
+    last = listb_iterator; 
+    count = otherList.count;
+};
+
+template <class T> 
+void linkedList<T>::deleteList(){
+    nodeType<T> *deleter; 
+
+    while (first){
+        deleter = first; 
+        first = first->link; 
+        delete deleter; 
+    }
     first = nullptr; 
     last = nullptr; 
     count = 0; 
+}
+
+template <class T> 
+linkedList<T>::linkedList(){
+    initList(); 
 };
+
+template <class T> 
+void linkedList<T>::initList(){
+    if (!this->isEmpty()){
+        deleteList(); 
+    }
+    first = nullptr; 
+    last = nullptr; 
+    count = 0; 
+}
 
 template <class T>
 bool linkedList<T>::isEmpty(){
-    return (count == 0); 
+    return (first == nullptr); 
 };
 
 template <class T>
@@ -78,7 +134,8 @@ void linkedList<T>::deleteNode(const T &item){
     }
     nodeType<T> *deleter = finder->link; 
     finder->link = deleter->link; 
-    delete deleter;
+    delete deleter;\
+    count = count - 1; 
 };
 
 template <class T> 
@@ -109,3 +166,8 @@ void linkedList<T>::displayList() const{
     }
     std::cout << std::endl;
 };
+
+template <class T> 
+linkedList<T>::~linkedList(){
+    deleteList(); 
+}
