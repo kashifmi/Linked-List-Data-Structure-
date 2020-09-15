@@ -8,7 +8,7 @@ struct nodeType{
 
 template <class T> 
 class linkedList{
-    private: 
+    protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
         int count;
@@ -47,8 +47,8 @@ void linkedList<T>::insertNode(const T &item){
         ++count; 
         return;         
     }
+    
     nodeType<T> *placefinder = first; 
-
     while (placefinder->link != nullptr){
         placefinder = placefinder->link; 
     }
@@ -99,8 +99,8 @@ bool linkedList<T>::searchItem(const T &item){
 template <class T>
 void linkedList<T>::displayList() const{
     nodeType<T> *displayer; 
+    
     displayer = first; 
-
     while (displayer != nullptr){
         std::cout << displayer->info << ", ";
         displayer = displayer->link; 
