@@ -11,8 +11,8 @@ struct nodeType{
 template <class T> 
 class linkedList{
     private: 
-        /*void copyList(const linkedList<T> &otherList);
-        void deleteList();*/
+        void copyList(const linkedList<T> &otherList);
+        //void deleteList();
     protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
@@ -29,11 +29,11 @@ class linkedList{
         //~linkedList();
 };
 
-/*template <class T> 
+template <class T> 
 void linkedList<T>::copyList(const linkedList<T> &otherList){
-    if (!this->isEmpty()){
+    /*if (!this->isEmpty()){
         deleteList(); 
-    }
+    }*/
 
     if (otherList.isEmpty()){
         std::cout << "List to copy is empty. Both lists are now empty. \n"; 
@@ -61,7 +61,7 @@ void linkedList<T>::copyList(const linkedList<T> &otherList){
     count = otherList.count;
 };
 
-template <class T> 
+/*template <class T> 
 void linkedList<T>::deleteList(){
     nodeType<T> *deleter; 
 
