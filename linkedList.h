@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream> 
+
 template <class T>
 struct nodeType{
     T info; 
@@ -9,25 +11,25 @@ struct nodeType{
 template <class T> 
 class linkedList{
     private: 
-        void copyList(const linkedList<T> &otherList);
-        void deleteList();
+        /*void copyList(const linkedList<T> &otherList);
+        void deleteList();*/
     protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
         int count;
     public: 
         linkedList();
+        linkedList<T> operator=(const linkedList<T> &otherList);
         bool isEmpty(); 
         void initList();  
         void insertNode(const T &item); 
         void deleteNode(const T &item);
         bool searchItem(const T &item); 
         void displayList() const; 
-        ~linkedList(); 
-        // copy constructor 
+        //~linkedList();
 };
 
-template <class T> 
+/*template <class T> 
 void linkedList<T>::copyList(const linkedList<T> &otherList){
     if (!this->isEmpty()){
         deleteList(); 
@@ -71,18 +73,23 @@ void linkedList<T>::deleteList(){
     first = nullptr; 
     last = nullptr; 
     count = 0; 
-}
+}*/
 
 template <class T> 
 linkedList<T>::linkedList(){
     initList(); 
 };
 
+/*template <class T>
+linkedList<T> linkedList<T>::operator=(const linkedList<T> &otherList){
+    copyList(otherList);
+}*/
+
 template <class T> 
 void linkedList<T>::initList(){
-    if (!this->isEmpty()){
+    /*if (!this->isEmpty()){
         deleteList(); 
-    }
+    }*/
     first = nullptr; 
     last = nullptr; 
     count = 0; 
@@ -167,7 +174,7 @@ void linkedList<T>::displayList() const{
     std::cout << std::endl;
 };
 
-template <class T> 
+/*template <class T> 
 linkedList<T>::~linkedList(){
     deleteList(); 
-}
+}*/
