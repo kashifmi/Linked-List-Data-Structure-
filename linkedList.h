@@ -12,7 +12,7 @@ template <class T>
 class linkedList{
     private: 
         // void copyList(const linkedList<T> &otherList);
-        
+        void deleteList();
     protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
@@ -26,8 +26,7 @@ class linkedList{
         void deleteNode(const T &item);
         bool searchItem(const T &item); 
         void displayList() const; 
-        void deleteList();
-        //~linkedList();
+        ~linkedList();
 };
 
 /*template <class T> 
@@ -86,11 +85,6 @@ const linkedList<T>& linkedList<T>::operator=(const linkedList<T> &otherList){
     copyList(otherList);
 
     return *this; 
-}*/
-
-/*template <class T>
-linkedList<T> linkedList<T>::operator=(const linkedList<T> &otherList){
-    copyList(otherList);
 }*/
 
 template <class T> 
@@ -185,7 +179,7 @@ void linkedList<T>::displayList() const{
     std::cout << std::endl;
 };
 
-/*template <class T> 
+template <class T> 
 linkedList<T>::~linkedList(){
     deleteList(); 
-}*/
+}
