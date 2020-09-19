@@ -18,7 +18,7 @@ int main(){
     linkedList<int> list2; 
 
     list2 = list1; */
-
+    list1.deleteList(); 
     list1.displayList(); 
 
     return 0; 

@@ -12,7 +12,6 @@ template <class T>
 class linkedList{
     private: 
         // void copyList(const linkedList<T> &otherList);
-        void deleteList();
     protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
@@ -26,6 +25,7 @@ class linkedList{
         void deleteNode(const T &item);
         bool searchItem(const T &item); 
         void displayList() const; 
+        void deleteList();
         ~linkedList();
 };
 
@@ -75,10 +75,9 @@ void linkedList<T>::deleteList(){
     count = 0; 
 }
 
-template <class T> 
-linkedList<T>::linkedList(){
-    initList(); 
-};
+template <class T>
+linkedList<T>::linkedList():
+    first {nullptr}, last {nullptr}, count {0} {}; 
 
 /*template <class T> 
 const linkedList<T>& linkedList<T>::operator=(const linkedList<T> &otherList){
@@ -86,16 +85,6 @@ const linkedList<T>& linkedList<T>::operator=(const linkedList<T> &otherList){
 
     return *this; 
 }*/
-
-template <class T> 
-void linkedList<T>::initList(){
-    /*if (!this->isEmpty()){
-        deleteList(); 
-    }*/
-    first = nullptr; 
-    last = nullptr; 
-    count = 0; 
-}
 
 template <class T>
 bool linkedList<T>::isEmpty(){
