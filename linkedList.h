@@ -20,7 +20,7 @@ class linkedList{
     public: 
         linkedList();
         const linkedList<T>& operator=(const linkedList<T> &otherList);
-        bool isEmpty(); 
+        bool isEmpty() const; 
         void initList();  
         void insertNode(const T &item); 
         void deleteNode(const T &item);
@@ -37,24 +37,24 @@ void linkedList<T>::copyList(const linkedList<T> &otherList){
         return; 
     }
 
-    nodeType<T> *lista_iterator, *listb_iterator, *node_creator; 
+    nodeType<T> *listA_iterator, *listB_iterator, *node_creator; 
 
-    lista_iterator = otherList.first; 
-    listb_iterator = new nodeType<T>; 
-    listb_iterator->info = listb_iterator->info; 
-    listb_iterator->link = nullptr; 
-    first = listb_iterator; 
-    lista_iterator = lista_iterator->link;
+    listA_iterator = otherList.first; 
+    listB_iterator = new nodeType<T>; 
+    listB_iterator->info = listA_iterator->info; 
+    listB_iterator->link = nullptr; 
+    first = listB_iterator; 
+    listA_iterator = listA_iterator->link;
 
-    while (lista_iterator){
+    while (listA_iterator){
         node_creator = new nodeType<T>; 
-        node_creator->info = lista_iterator->info;
+        node_creator->info = listA_iterator->info;
         node_creator->link = nullptr; 
-        listb_iterator->link = node_creator; 
-        listb_iterator = node_creator; 
-        lista_iterator = lista_iterator->link; 
+        listB_iterator->link = node_creator; 
+        listB_iterator = node_creator; 
+        listA_iterator = listA_iterator->link; 
     }
-    last = listb_iterator; 
+    last = listB_iterator; 
     count = otherList.count;
 }
 
@@ -89,7 +89,7 @@ const linkedList<T>& linkedList<T>::operator=(const linkedList<T> &otherList){
 }
 
 template <class T>
-bool linkedList<T>::isEmpty(){
+bool linkedList<T>::isEmpty() const{
     return (first == nullptr); 
 };
 

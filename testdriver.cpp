@@ -9,22 +9,24 @@ int main(){
 
     list1.displayList(); 
 
-    list1.deleteNode(5); 
-
-    list1.displayList(); 
-
-    /*std::cout << "Found in the list " << list1.searchItem(6) << std::endl; 
-
-    linkedList<int> list2; 
-
-    list2 = list1; */
-    list1.initList(); 
-    list1.displayList(); 
+    std::cout << "Break \n"; 
 
     linkedList<int> list2; 
 
     list2 = list1; 
-    list2.displayList(); 
+    list2.displayList();
+
+    list1.deleteNode(5); 
+
+    list1.displayList(); 
+
+    std::cout << "Found in the list " << list1.searchItem(3) << std::endl; 
+
+    list2 = list1;
+    list1.initList(); 
+    list1.displayList();
+
+     
 
     return 0; 
 };
