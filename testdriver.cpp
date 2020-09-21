@@ -9,7 +9,7 @@ int main(){
 
     list1.displayList(); 
 
-    list1.deleteNode(7); 
+    list1.deleteNode(5); 
 
     list1.displayList(); 
 
@@ -20,6 +20,11 @@ int main(){
     list2 = list1; */
     list1.initList(); 
     list1.displayList(); 
+
+    linkedList<int> list2; 
+
+    list2 = list1; 
+    list2.displayList(); 
 
     return 0; 
 };

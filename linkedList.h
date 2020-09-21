@@ -11,7 +11,7 @@ struct nodeType{
 template <class T> 
 class linkedList{
     private: 
-        // void copyList(const linkedList<T> &otherList);
+        void copyList(const linkedList<T> &otherList);
         void deleteList();
     protected: 
         nodeType<T> *first; 
@@ -19,7 +19,7 @@ class linkedList{
         int count;
     public: 
         linkedList();
-        //const linkedList<T>& operator=(const linkedList<T> &otherList);
+        const linkedList<T>& operator=(const linkedList<T> &otherList);
         bool isEmpty(); 
         void initList();  
         void insertNode(const T &item); 
@@ -29,18 +29,15 @@ class linkedList{
         ~linkedList();
 };
 
-/*template <class T> 
+template <class T> 
 void linkedList<T>::copyList(const linkedList<T> &otherList){
-    if (!this->isEmpty()){
-        deleteList(); 
-    }
-
+    deleteList(); 
     if (otherList.isEmpty()){
         std::cout << "List to copy is empty. Both lists are now empty. \n"; 
         return; 
     }
 
-    nodeType<T> *lista_iterator, *listb_iterator, node_creator; 
+    nodeType<T> *lista_iterator, *listb_iterator, *node_creator; 
 
     lista_iterator = otherList.first; 
     listb_iterator = new nodeType<T>; 
@@ -59,7 +56,7 @@ void linkedList<T>::copyList(const linkedList<T> &otherList){
     }
     last = listb_iterator; 
     count = otherList.count;
-}*/
+}
 
 template <class T> 
 void linkedList<T>::deleteList(){
@@ -84,12 +81,12 @@ void linkedList<T>::initList(){
     deleteList(); 
 }
 
-/*template <class T> 
+template <class T> 
 const linkedList<T>& linkedList<T>::operator=(const linkedList<T> &otherList){
     copyList(otherList);
 
     return *this; 
-}*/
+}
 
 template <class T>
 bool linkedList<T>::isEmpty(){
