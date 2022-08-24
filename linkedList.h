@@ -13,6 +13,7 @@ class linkedList{
     private: 
         void copyList(const linkedList<T> &otherList);
         void deleteList();
+        void displayListReverse(nodeType<T> *current) const;
     protected: 
         nodeType<T> *first; 
         nodeType<T> *last; 
@@ -26,7 +27,8 @@ class linkedList{
         void insertNodeOrdered(const T &item); 
         void deleteNode(const T &item);
         bool searchItem(const T &item); 
-        void displayList() const; 
+        void displayList() const;  
+        void printReverse() const; 
         ~linkedList();
 };
 
@@ -204,6 +206,20 @@ void linkedList<T>::displayList() const{
     }
     std::cout << std::endl;
 };
+
+template <class T> 
+void linkedList<T>::displayListReverse(nodeType<T> *current) const{
+    if (current != nullptr){
+        displayListReverse(current->link);
+        std::cout << current->info << ", ";
+    }
+};
+
+template <class T> 
+void linkedList<T>::printReverse() const{
+    displayListReverse(first);
+    std::cout << std::endl; 
+}
 
 template <class T> 
 linkedList<T>::~linkedList(){

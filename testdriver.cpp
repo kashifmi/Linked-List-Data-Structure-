@@ -34,6 +34,8 @@ int main(){
     list2.displayList();
     list2.insertNodeOrdered(9);
 
+    list2.printReverse();
+
 
     return 0; 
 };
