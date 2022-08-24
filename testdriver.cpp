@@ -26,7 +26,14 @@ int main(){
     list1.initList(); 
     list1.displayList();
 
-     
+    list2.displayList(); 
+
+    list2.insertNodeOrdered(10);
+    list2.displayList();
+    list2.insertNodeOrdered(0);
+    list2.displayList();
+    list2.insertNodeOrdered(9);
+
 
     return 0; 
 };
