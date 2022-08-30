@@ -1,4 +1,4 @@
-# This is a header!
-My first repository. Still learning. 
+# About
+"Firstdatastructure" is a repository for the first kind of data structure that I learned how to make, which is a linked list. 
 
-This repository is going to start as one of the first data structures I learned, a linked list. My plan is to start very simple and small and slowly add features and improvements.
+The intent of this respository is to create a linked list and expand it through features or optimizations.
