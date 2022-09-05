@@ -24,7 +24,6 @@ class linkedList{
         const linkedList<T>& operator=(const linkedList<T> &otherList);
         bool isEmpty() const; 
         void initList();  
-        void insertNode(const T &item);
         void insertNodeOrdered(const T &item); 
         void deleteNode(const T &item);
         bool searchItem(const T &item); 
@@ -95,28 +94,6 @@ const linkedList<T>& linkedList<T>::operator=(const linkedList<T> &otherList){
 template <class T>
 bool linkedList<T>::isEmpty() const{
     return (first == nullptr); 
-};
-
-template <class T>
-void linkedList<T>::insertNode(const T &item){
-    nodeType<T> *inserter = new nodeType<T>; 
-    inserter->info = item; 
-    inserter->link_forward = nullptr; 
-
-    if (isEmpty()){
-        first = inserter; 
-        last = inserter; 
-        ++count; 
-        return;         
-    }
-    
-    nodeType<T> *placefinder = first; 
-    while (placefinder->link_forward != nullptr){
-        placefinder = placefinder->link_forward; 
-    }
-    placefinder->link_forward = inserter; 
-    last = inserter; 
-    ++count; 
 };
 
 template <class T> 

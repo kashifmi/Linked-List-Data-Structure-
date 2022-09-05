@@ -3,9 +3,9 @@
 
 int main(){
     linkedList<int> list1; 
-    list1.insertNode(5); 
-    list1.insertNode(6); 
-    list1.insertNode(7); 
+    list1.insertNodeOrdered(5); 
+    list1.insertNodeOrdered(6); 
+    list1.insertNodeOrdered(7); 
 
     list1.displayList(); 
 
