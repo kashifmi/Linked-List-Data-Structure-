@@ -5,7 +5,8 @@
 template <class T>
 struct nodeType{
     T info; 
-    nodeType *link; 
+    nodeType *link_forward; 
+    nodeType *link_backward;
 };
 
 template <class T> 
@@ -45,17 +46,17 @@ void linkedList<T>::copyList(const linkedList<T> &otherList){
     listA_iterator = otherList.first; 
     listB_iterator = new nodeType<T>; 
     listB_iterator->info = listA_iterator->info; 
-    listB_iterator->link = nullptr; 
+    listB_iterator->link_forward = nullptr; 
     first = listB_iterator; 
-    listA_iterator = listA_iterator->link;
+    listA_iterator = listA_iterator->link_forward;
 
     while (listA_iterator){
         node_creator = new nodeType<T>; 
         node_creator->info = listA_iterator->info;
-        node_creator->link = nullptr; 
-        listB_iterator->link = node_creator; 
+        node_creator->link_forward = nullptr; 
+        listB_iterator->link_forward = node_creator; 
         listB_iterator = node_creator; 
-        listA_iterator = listA_iterator->link; 
+        listA_iterator = listA_iterator->link_forward; 
     }
     last = listB_iterator; 
     count = otherList.count;
@@ -67,7 +68,7 @@ void linkedList<T>::deleteList(){
 
     while (first){
         deleter = first; 
-        first = first->link; 
+        first = first->link_forward; 
         delete deleter; 
     }
     first = nullptr; 
@@ -100,7 +101,7 @@ template <class T>
 void linkedList<T>::insertNode(const T &item){
     nodeType<T> *inserter = new nodeType<T>; 
     inserter->info = item; 
-    inserter->link = nullptr; 
+    inserter->link_forward = nullptr; 
 
     if (isEmpty()){
         first = inserter; 
@@ -110,10 +111,10 @@ void linkedList<T>::insertNode(const T &item){
     }
     
     nodeType<T> *placefinder = first; 
-    while (placefinder->link != nullptr){
-        placefinder = placefinder->link; 
+    while (placefinder->link_forward != nullptr){
+        placefinder = placefinder->link_forward; 
     }
-    placefinder->link = inserter; 
+    placefinder->link_forward = inserter; 
     last = inserter; 
     ++count; 
 };
@@ -122,7 +123,7 @@ template <class T>
 void linkedList<T>::insertNodeOrdered(const T &item){
     nodeType<T> *inserter = new nodeType<T>;
     inserter->info = item; 
-    inserter->link = nullptr; 
+    inserter->link_forward = nullptr; 
     if (first == nullptr){
         first = inserter; 
         last = inserter;
@@ -130,23 +131,23 @@ void linkedList<T>::insertNodeOrdered(const T &item){
         return; 
     }
     nodeType<T> *placeFinder = first; 
-    while (placeFinder->link != nullptr && inserter->info > placeFinder->link->info){
-        placeFinder = placeFinder->link; 
+    while (placeFinder->link_forward != nullptr && inserter->info > placeFinder->link_forward->info){
+        placeFinder = placeFinder->link_forward; 
     }
     if (placeFinder == first){
-        inserter->link = first; 
+        inserter->link_forward = first; 
         first = inserter; 
         ++count; 
         return; 
     }
     if (placeFinder == last){
-        last->link = inserter; 
+        last->link_forward = inserter; 
         last = inserter; 
         ++count; 
         return; 
     }
-    inserter->link = placeFinder->link;
-    placeFinder->link = inserter; 
+    inserter->link_forward = placeFinder->link_forward;
+    placeFinder->link_forward = inserter; 
     ++count; 
     
     return; 
@@ -157,20 +158,20 @@ void linkedList<T>::deleteNode(const T &item){
     nodeType<T> *finder = first; 
 
     if (first->info == item){
-        first = first->link; 
+        first = first->link_forward; 
         delete finder;
         return;  
     }
     
-    while(finder->link->info != item || finder == nullptr){
-        finder = finder->link; 
+    while(finder->link_forward->info != item || finder == nullptr){
+        finder = finder->link_forward; 
     }
     if (!finder){
         std::cout << "Item to delete not found."; 
         return; 
     }
-    nodeType<T> *deleter = finder->link; 
-    finder->link = deleter->link; 
+    nodeType<T> *deleter = finder->link_forward; 
+    finder->link_forward = deleter->link_forward; 
     delete deleter;\
     count = count - 1; 
 };
@@ -186,7 +187,7 @@ bool linkedList<T>::searchItem(const T &item){
             return found; 
         }
         else{
-            finder = finder->link; 
+            finder = finder->link_forward; 
         }
     }
     return found;
@@ -202,7 +203,7 @@ void linkedList<T>::displayList() const{
     displayer = first; 
     while (displayer != nullptr){
         std::cout << displayer->info << ", ";
-        displayer = displayer->link; 
+        displayer = displayer->link_forward; 
     }
     std::cout << std::endl;
 };
@@ -210,7 +211,7 @@ void linkedList<T>::displayList() const{
 template <class T> 
 void linkedList<T>::displayListReverse(nodeType<T> *current) const{
     if (current != nullptr){
-        displayListReverse(current->link);
+        displayListReverse(current->link_forward);
         std::cout << current->info << ", ";
     }
 };
