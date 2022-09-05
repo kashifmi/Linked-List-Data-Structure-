@@ -101,7 +101,8 @@ void linkedList<T>::insertNodeOrdered(const T &item){
     nodeType<T> *inserter = new nodeType<T>;
     inserter->info = item; 
     inserter->link_forward = nullptr; 
-    if (first == nullptr){
+    inserter->link_backward = nullptr;
+    if (isEmpty()){
         first = inserter; 
         last = inserter;
         ++count; 
@@ -112,18 +113,20 @@ void linkedList<T>::insertNodeOrdered(const T &item){
         placeFinder = placeFinder->link_forward; 
     }
     if (placeFinder == first){
-        inserter->link_forward = first; 
+        inserter->link_forward = first;
         first = inserter; 
         ++count; 
         return; 
     }
     if (placeFinder == last){
+        inserter->link_backward = last; 
         last->link_forward = inserter; 
         last = inserter; 
         ++count; 
         return; 
     }
     inserter->link_forward = placeFinder->link_forward;
+    inserter->link_backward = placeFinder;
     placeFinder->link_forward = inserter; 
     ++count; 
     
@@ -136,7 +139,9 @@ void linkedList<T>::deleteNode(const T &item){
 
     if (first->info == item){
         first = first->link_forward; 
+        first->link_backward = nullptr; 
         delete finder;
+        count = count - 1; 
         return;  
     }
     
@@ -149,7 +154,8 @@ void linkedList<T>::deleteNode(const T &item){
     }
     nodeType<T> *deleter = finder->link_forward; 
     finder->link_forward = deleter->link_forward; 
-    delete deleter;\
+    finder->link_backward = deleter->link_backward; 
+    delete deleter;
     count = count - 1; 
 };
 
